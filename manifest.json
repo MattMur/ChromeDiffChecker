@@ -1,6 +1,6 @@
 {
   "name": "WebDiff Notifier",
-  "version": "0.0.9",
+  "version": "0.1.1",
   "manifest_version": 2,
   "description": "Get notifications when website changes",
   "homepage_url": "http://extensionizr.com",
@@ -13,12 +13,14 @@
   "permissions": [
     "notifications",
     "https://www.nvidia.com/",
-    "http://*"
+    "https://localhost/*",
+    "http://localhost/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://www.nvidia.com/en-us/shop/geforce/gpu/*"
+        "https://www.nvidia.com/en-us/shop/geforce/gpu/*",
+        "https://www.bestbuy.com/site/microsoft-xbox-series-s-512-gb-all-digital-console-disc-free-gaming-white/*"
       ],
       "js": [
         "src/inject/inject.js",

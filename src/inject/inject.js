@@ -1,4 +1,5 @@
 
+const reloadTime = 7000;
 const nvidia = "https://www.nvidia.com/en-us/shop/geforce/gpu/?page=1&limit=9&locale=en-us&category=GPU&gpu=RTX%203080";
 const xbox = "https://www.bestbuy.com/site/microsoft-xbox-series-s-512-gb-all-digital-console-disc-free-gaming-white/6430277.p?skuId=6430277";
 
@@ -27,33 +28,33 @@ function findNvidiaElement() {
 		let text = x[0].innerText;
 		console.log(text);
 		if (text === "OUT OF STOCK") {
-			console.log("nothing to see here");
-			notify('nvidia');
+			//console.log("nothing to see here");
+			window.stop();
 			setInterval(() => {
 				document.location.reload();
-			}, 4000);
+			}, reloadTime);
 		} else {
-			console.log("text changed");
+			//console.log("text changed");
 			notify('nvidia');
 		}
 	} else {
-		console.log("couldn't find element");
+		//console.log("couldn't find element");
 		notify('nvidia');
 	}
 	
 }
 
 function findXboxElement() {
-	let x = $('.featured-buy-link');
+	let x = $('button.add-to-cart-button');
 	if (x.length > 0) { 
 		let text = x[0].innerText;
 		console.log(text);
-		if (text === "OUT OF STOCK") {
-			console.log("nothing to see here");
-			notify('xbox');
+		if (text === "Coming Soon") {
+			//console.log("nothing to see here");
+			window.stop();
 			setInterval(() => {
 				document.location.reload();
-			}, 4000);
+			}, reloadTime);
 		} else {
 			console.log("text changed");
 			notify('xbox');
@@ -65,10 +66,9 @@ function findXboxElement() {
 	
 }
 
-
 function notify(product) {
 	const Http = new XMLHttpRequest();
-	const url='http://192.168.8.198:3001/'+product;
+	const url='https://localhost:3001/'+product;
 	Http.open("GET", url);
 	Http.send();
 }
