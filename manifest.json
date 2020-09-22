@@ -1,0 +1,30 @@
+{
+  "name": "WebDiff Notifier",
+  "version": "0.0.9",
+  "manifest_version": 2,
+  "description": "Get notifications when website changes",
+  "homepage_url": "http://extensionizr.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "permissions": [
+    "notifications",
+    "https://www.nvidia.com/",
+    "http://*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.nvidia.com/en-us/shop/geforce/gpu/*"
+      ],
+      "js": [
+        "src/inject/inject.js",
+        "js/jquery/jquery.min.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+}
